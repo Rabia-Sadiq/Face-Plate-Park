@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+venv/
+.venv/
+env/
+
+# Database
+*.db
+*.sqlite3
+faceplatepark.db
+
+# Environment Variables (IMPORTANT - secrets mat upload karo)
+.env
+.env.local
+.env.production
+backend/.env
+frontend/.env.local
+frontend/.env.production
+
+# ML Models & Large Files
+*.pt
+*.pth
+*.weights
+*.onnx
+models/*.pt
+
+# Uploads folder (user data)
+backend/uploads/
+uploads/
+
+# Next.js
+frontend/.next/
+frontend/node_modules/
+frontend/out/
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db

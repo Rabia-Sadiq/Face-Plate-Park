@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand: #00FF94;
+  --surface: #0D1117;
+  --surface-1: #161B22;
+  --surface-2: #21262D;
+  --border: #30363D;
+}
+
+body {
+  background: var(--surface);
+  color: #E6EDF3;
+  font-family: 'Syne', sans-serif;
+}
+
+@keyframes scan {
+  0%   { top: 0; }
+  100% { top: 100%; }
+}
+.scan-line::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--brand), transparent);
+  animation: scan 2s linear infinite;
+  box-shadow: 0 0 12px var(--brand);
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 8px #00FF9440; }
+  50%       { box-shadow: 0 0 24px #00FF9499; }
+}
+.glow { animation: glow-pulse 2s ease-in-out infinite; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
