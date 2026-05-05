@@ -17,7 +17,25 @@ services:
       - YOLO_MODEL_PATH=models/best.pt
     volumes:
       # Persist database and uploads outside container
-      - ./backend/faceplatepark.db:/app/faceplatepark.db
+      - ./backend/faceplatepark# backend/Dockerfile
+FROM python:3.11-slim
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y \
+    curl \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+RUN mkdir -p uploads models
+
+EXPOSE 8000
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"].db:/app/faceplatepark.db
       - ./backend/uploads:/app/uploads
       - ./backend/models:/app/models
     restart: unless-stopped
@@ -45,4 +63,22 @@ services:
 
 # ── Named volumes (optional — for PostgreSQL later) ───────────────────────────
 volumes:
-  uploads_data:
+  uploads_data:# backend/Dockerfile
+FROM python:3.11-slim
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y \
+    curl \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+RUN mkdir -p uploads models
+
+EXPOSE 8000
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
